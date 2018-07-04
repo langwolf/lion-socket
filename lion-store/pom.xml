@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.lioncorp</groupId>
-		<artifactId>lion-server-parent</artifactId>
+		<artifactId>lion-socket-parent</artifactId>
 		<version>0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>lion-store</artifactId>
@@ -27,7 +27,6 @@
 	</dependencies>
 	    <build>
             <plugins>  
-                <!--JDK版本 -->  
                 <plugin>  
                     <groupId>org.apache.maven.plugins</groupId>  
                     <artifactId>maven-compiler-plugin</artifactId>  
