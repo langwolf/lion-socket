@@ -11,5 +11,26 @@
 	<packaging>jar</packaging>
 	<name>lion-client</name>
 	<dependencies>
+		<dependency>  
+            <groupId>com.lioncorp</groupId>  
+            <artifactId>lion-common</artifactId>  
+            <version>${project.version}</version>  
+        </dependency>
+        <dependency>  
+            <groupId>com.lioncorp</groupId>  
+            <artifactId>lion-service</artifactId>  
+            <version>${project.version}</version>  
+        </dependency>
+        <dependency>
+    		<groupId>org.apache.jmeter</groupId>
+    		<artifactId>ApacheJMeter_core</artifactId>
+    		<version>4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.jmeter</groupId>
+			<artifactId>ApacheJMeter_java</artifactId>
+			<version>4.0</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
