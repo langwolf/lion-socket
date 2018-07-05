@@ -3,4 +3,4 @@ language: java
 after_success:
 #- mvn package -P test-jar -Dmaven.test.skip=true
 
- - mvn test jacoco:report-aggregate coveralls:report -DrepoToken=gIJDWeXxz1Cq6CvpXadExv3MbH48ixloo
+ - mvn clean verify jacoco:report-aggregate coveralls:report -DrepoToken=gIJDWeXxz1Cq6CvpXadExv3MbH48ixloo
