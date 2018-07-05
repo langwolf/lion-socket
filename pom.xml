@@ -300,7 +300,6 @@
                     <execution>
                         <phase>post-integration-test</phase>
                         <goals>
-                            <goal>check</goal>
                             <goal>cobertura</goal>
                         </goals>
                     </execution>
