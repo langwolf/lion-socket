@@ -1,4 +1,5 @@
 language: java
 
 after_success:
-- mvn package -p test-jar -Dmaven.test.skip=true
+#- mvn package -p test-jar -Dmaven.test.skip=true
+- mvn jacoco:report coveralls:report
