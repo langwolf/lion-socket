@@ -1,4 +1,4 @@
-namespace java com.netease.news.rec.common.thrift.streams.iface
+namespace java com.lioncorp.service.thrift.iface
 
 
 struct UserRequest {
