@@ -20,7 +20,7 @@ public class ServiceProxyHandler implements InvocationHandler{
     
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-		long startTime=System.currentTimeMillis();	// 记录起始时间戮
+		long startTime=System.currentTimeMillis();
 
 		
 		Object result=null;  
