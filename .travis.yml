@@ -1,6 +1,6 @@
 language: java
 
 after_success:
-#- mvn package -p test-jar -Dmaven.test.skip=true
+#- mvn package -P test-jar -Dmaven.test.skip=true
 
-- mvn clean -p test-jar cobertura:cobertura coveralls:report -Dmaven.test.skip=true
+- mvn clean -P test-jar cobertura:cobertura coveralls:report -Dmaven.test.skip=true
