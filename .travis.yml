@@ -3,4 +3,4 @@ language: java
 after_success:
 #- mvn package -P test-jar -Dmaven.test.skip=true
 
-- mvn clean cobertura:cobertura coveralls:report
+ - mvn clean jacoco:report-aggregate coveralls:report
