@@ -4,7 +4,7 @@ import org.junit.Test;
 
 
 
-public class LionTest {
+public class LionServerTest {
 
 	public static void main(String[] args) throws Exception {
 		LionServer lionServer = LionServer.newBuilder()

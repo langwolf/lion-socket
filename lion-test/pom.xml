@@ -26,6 +26,11 @@
             <artifactId>lion-server</artifactId>  
             <version>${project.version}</version>  
         </dependency>
+        <dependency>  
+            <groupId>com.lioncorp</groupId>  
+            <artifactId>lion-client</artifactId>  
+            <version>${project.version}</version>  
+        </dependency>
         <dependency>
     		<groupId>org.apache.jmeter</groupId>
     		<artifactId>ApacheJMeter_core</artifactId>

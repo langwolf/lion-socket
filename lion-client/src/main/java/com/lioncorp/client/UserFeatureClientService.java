@@ -79,7 +79,7 @@ public class UserFeatureClientService {
         if(StringUtils.isBlank(address))
             //
             return;
-        List<List<ServiceInfo>> servicePartitions = getUserFeatureServerAddress(address);
+        List<List<ServiceInfo>> servicePartitions = BaseService.getServerAddress(address);
         PoolConfig config = new PoolConfig();
         config.setFailover(true);
         ThriftMultiplexedBinaryProtocolFactory multiFactory =
