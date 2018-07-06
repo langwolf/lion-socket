@@ -416,6 +416,7 @@
 				<module>lion-service</module>
 				<module>lion-server</module>
 				<module>lion-test</module>
+				<module>lion-client</module>
 			</modules>
 			<build>
 
