@@ -262,6 +262,20 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.14.1</version>
+				<configuration>
+					<argLine>${argLine} -Dfile.encoding=UTF-8</argLine>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+					<excludes>
+						<exclude>**/*MainTest.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.eluder.coveralls</groupId>
 				<artifactId>coveralls-maven-plugin</artifactId>
 				<version>4.3.0</version>
@@ -313,6 +327,7 @@
 				<module>lion-store</module>
 				<module>lion-service</module>
 				<module>lion-server</module>
+				<module>lion-test</module>
 			</modules>
 			<build>
 
@@ -400,6 +415,7 @@
 				<module>lion-store</module>
 				<module>lion-service</module>
 				<module>lion-server</module>
+				<module>lion-test</module>
 			</modules>
 			<build>
 
