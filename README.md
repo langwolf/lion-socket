@@ -38,7 +38,7 @@ service TService {
 
 ### 2. Develop server-side service
 
-Develop a server-side service implementation. Below is an example based on the IDL generated java code from the previous step. set the **service name** as Ttest
+Develop a server-side service implementation. Below is an example based on the IDL generated java code from the previous step. set the **service name** as Ttest¡£
 The logic here is pretty simple.
 
 ```
