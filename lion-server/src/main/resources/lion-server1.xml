@@ -25,9 +25,8 @@
 	<context:component-scan base-package="com.lioncorp.server" />
 	<import resource="classpath*:/lion-service.xml"/>
 	<bean id="materialServiceImpl" class="com.lioncorp.server.TMaterialServiceImpl" />
-	<bean id="consulServiceImpl" class="com.lioncorp.service.consul.impl.ConsulServiceImpl" />
 	
-	<bean id="materialServer" class="com.lioncorp.server.ThriftServiceServerFactory"
+	<bean id="materialServer" class="com.lioncorp.server.LionServiceServerFactory"
 		init-method="init"
 		destroy-method="close">
 		<property name="services">  
@@ -38,7 +37,7 @@
 		<property name="port" value="23926" />
 		<property name="timeOut" value="600" />
 		<property name="version" value="1.0.0" />
-		<property name="consulService" ref="consulServiceImpl" />
+		<property name="useConsul" ref="false" />
 		<property name="consulShutdownHook" value="false"/>
 	</bean>
 </beans>

@@ -15,33 +15,38 @@ import org.slf4j.LoggerFactory;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.lioncorp.nettythrift.core.ThriftServerDefBuilderBase;
 import com.lioncorp.nettythrift.server.TNettyThriftServer;
+import com.lioncorp.server.handler.LionServerEventHandler;
+import com.lioncorp.server.handler.ServiceProxy;
 import com.lioncorp.service.consul.ConsulService;
+import com.lioncorp.service.consul.impl.ConsulServiceImpl;
 
 
 
-public class ThriftServiceServerFactory implements  Closeable{
-	
-	private static final Logger logger = LoggerFactory.getLogger(ThriftServiceServerFactory.class);
-	
+public class LionServiceServerFactory implements Closeable {
+	private static final Logger logger = LoggerFactory
+			.getLogger(LionServiceServerFactory.class);
+
 	private Integer port = 8299;
-	private Integer timeOut = 120000;	
+	private Integer timeOut = 120000;
 	private Set<Object> services;
 	private String version;
-//
+	private boolean useConsul;
+	//
 	private ConsulService consulService;
-    private ExecutorService servingExecutor;
-    private boolean consulShutdownHook = false;
-    private TServer server = null;
+	private ExecutorService servingExecutor;
+	private boolean consulShutdownHook = false;
+	private TServer server = null;
 
-	public void init() throws TTransportException, Exception{
+	public void init() throws TTransportException, Exception {
 		this.addProcessor();
-        TNettyThriftServer.Args nettyArg = new TNettyThriftServer.Args(port, timeOut);
-        nettyArg.setMaxReadBuffer(ThriftServerDefBuilderBase.MAX_FRAME_SIZE);
-        nettyArg.setMap(LionServicesMapping.SERVICES_PROCESSOR_MAP2);
-        server = new TNettyThriftServer(nettyArg);
-        
-        server.setServerEventHandler(new LionServerEventHandler());
-        logger.info("Start server on port:{}", port+"...");
+		TNettyThriftServer.Args nettyArg = new TNettyThriftServer.Args(port,
+				timeOut);
+		nettyArg.setMaxReadBuffer(ThriftServerDefBuilderBase.MAX_FRAME_SIZE);
+		nettyArg.setMap(LionServicesMapping.SERVICES_PROCESSOR_MAP);
+		server = new TNettyThriftServer(nettyArg);
+
+		server.setServerEventHandler(new LionServerEventHandler());
+		logger.info("Start server on port:{}", port + "...");
 		servingExecutor = Executors
 				.newSingleThreadExecutor(new ThreadFactoryBuilder()
 						.setNameFormat("server I/O Boss").build());
@@ -54,9 +59,10 @@ public class ThriftServiceServerFactory implements  Closeable{
 				server.serve();
 			}
 		});
-        // 注册服务
-		if (consulService != null) {
-//			consulService.register();		
+
+		if (useConsul) {
+			consulService = new ConsulServiceImpl();
+			consulService.register();
 		}
 
 		if (consulShutdownHook) {
@@ -74,45 +80,46 @@ public class ThriftServiceServerFactory implements  Closeable{
 				}
 			});
 		}
-    }
-	
+	}
+
 	@Override
 	public void close() {
 		if (server != null) {
 			server.stop();
 		}
 	}
-	
-	public void addProcessor(String apiName,org.apache.thrift.TBaseProcessor<?> processor){
-	    LionServicesMapping.SERVICES_PROCESSOR_MAP2.put(apiName, processor);
+
+	private void addProcessor(String apiName,
+			org.apache.thrift.TBaseProcessor<?> processor) {
+		LionServicesMapping.SERVICES_PROCESSOR_MAP.put(apiName, processor);
 	}
-	
-    private void addProcessor(){
-        if(CollectionUtils.isEmpty(services)){
-        	logger.info("no config service");
-            return ;
-        }       
-        for (Object service : services) {
-        	Class<?> clas = service.getClass();
-        	LionImpl rid = clas.getAnnotation(LionImpl.class);
-        	if(null == rid) continue;
+
+	private void addProcessor() {
+		if (CollectionUtils.isEmpty(services)) {
+			logger.info("no config service");
+			return;
+		}
+		for (Object service : services) {
+			Class<?> clas = service.getClass();
+			LionImpl rid = clas.getAnnotation(LionImpl.class);
+			if (null == rid)
+				continue;
 			try {
 				Constructor<?> constructor = rid.ApiProcessorClazz()
 						.getConstructor(new Class[] { rid.ApiIfaceClazz() });
 				String apiName = rid.ApiName();
 				addProcessor(apiName,
-						(org.apache.thrift.TBaseProcessor<?>) constructor.newInstance(
-								new ServiceProxy().wrapper(service, apiName, version))
-								);
+						(org.apache.thrift.TBaseProcessor<?>) constructor
+								.newInstance(new ServiceProxy().wrapper(
+										service, apiName, version)));
 				logger.info("load service success");
-				
+
 			} catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-	
-	
+				e.printStackTrace();
+			}
+		}
+	}
+
 	// set
 	public void setPort(Integer port) {
 		this.port = port;
@@ -137,4 +144,9 @@ public class ThriftServiceServerFactory implements  Closeable{
 	public void setTimeOut(Integer timeOut) {
 		this.timeOut = timeOut;
 	}
+
+	public void setUseConsul(boolean useConsul) {
+		this.useConsul = useConsul;
+	}
+	
 }

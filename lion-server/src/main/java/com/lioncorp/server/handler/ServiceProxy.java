@@ -1,4 +1,4 @@
-package com.lioncorp.server;
+package com.lioncorp.server.handler;
 
 import java.lang.reflect.Proxy;
 
