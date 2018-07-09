@@ -23,13 +23,10 @@ namespace java com.lioncorp.service.thrift.iface
 struct Request {
 	1:optional string id
 }
-struct Sample {
-	1:optional string id
-	2:optional string data
-}
+
 struct Response {
     1:optional string id
-    2:optional Sample data
+    2:optional string data
 }
 service TService {
     Response getData(1:Request request)
@@ -39,7 +36,7 @@ service TService {
 
 ### 2. Develop server-side service
 
-Develop a server-side service implementation. Below is an example based on the IDL generated java code from the previous step. set the **service name** as "Ttest",The logic here is pretty simple.
+Develop a server-side service implementation. Below is an example based on the IDL generated java code from the previous step. set the **service name** as "Ttest"
 
 ```
 @LionImpl(ApiName = "Ttest", 
