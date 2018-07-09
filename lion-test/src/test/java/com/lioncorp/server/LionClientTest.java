@@ -46,7 +46,7 @@ public class LionClientTest {
 		System.out.println("init over");
 	}
 	
-	@Test
+//	@Test
 	public void test2(){
         if(null == parserDataPool)
             return;
