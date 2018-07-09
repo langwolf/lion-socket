@@ -21,7 +21,7 @@ a simple sample:
 namespace java com.lioncorp.service.thrift.iface
 
 service TCalculator {
-    String ping()
+    string ping()
 }
 ```
 
