@@ -10,9 +10,9 @@ The server-side is built upon [netty](http://netty.io/) which supports asynchron
 
 ## Quick Start
 
-### 1. Make a thrift generated message
+### 1. Make a thrift file
 
-Use `thrift` command to compile an **IDL thrift file** and generate a java source file. 
+Use an **IDL thrift file** and generate a java source file. 
 
 a simple sample:
 
@@ -20,23 +20,14 @@ a simple sample:
 ```
 namespace java com.lioncorp.service.thrift.iface
 
-struct Request {
-	1:optional string id
-}
-
-struct Response {
-    1:optional string id
-    2:optional string data
-}
-service TService {
-    Response getData(1:Request request)
-    i32 getHealthStatus()
+service TCalculator {
+    String ping()
 }
 ```
 
-### 2. Develop server-side service
+### 2. Server-side service
 
-Develop a server-side service implementation. Below is an example based on the IDL generated java code from the previous step. set the **service name** as "Ttest"
+Develop a server-side service implementation. Below is an example based on the IDL generated java code. set the **service name** as "Ttest"
 
 ```
 @LionImpl(ApiName = "Ttest", 
@@ -51,7 +42,7 @@ public class CalcIfaceImpl implements TCalculator.Iface {
 }
 ```
 
-### 3. Expose service and start server
+### 3. Start server
 
 Then start the server on port 9000.
 
