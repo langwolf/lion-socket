@@ -21,7 +21,7 @@ import com.lioncorp.server.TCalculator.Iface;
 public class LionClientTest {
 	private static ShardedThriftClientPool<String, TCalculator.Client>  parserDataPool = null;
 	private static Gson gson = new Gson();
-//	@Before
+	@Before
 	public void test1() {
 
 		new LionServerTest().test1();

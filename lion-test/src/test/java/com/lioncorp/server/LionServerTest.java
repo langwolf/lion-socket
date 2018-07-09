@@ -1,5 +1,6 @@
 package com.lioncorp.server;
 
+import org.junit.Before;
 import org.junit.Test;
 
 
@@ -14,7 +15,7 @@ public class LionServerTest {
 		lionServer.start();
 	}
 	
-	@Test
+	@Before
 	public void test1(){
 		LionServer lionServer = LionServer.newBuilder()
 				.listen(9000)
