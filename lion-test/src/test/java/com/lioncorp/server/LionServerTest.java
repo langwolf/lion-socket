@@ -15,7 +15,7 @@ public class LionServerTest {
 		lionServer.start();
 	}
 	
-	@Before
+	@Test
 	public void test1(){
 		LionServer lionServer = LionServer.newBuilder()
 				.listen(9000)
