@@ -1,6 +1,7 @@
 # lion-socket
 [![Build Status](https://travis-ci.org/langwolf/lion-socket.svg?branch=master)](https://travis-ci.org/langwolf/lion-socket)
 [![Coverage Status](https://coveralls.io/repos/github/langwolf/lion-socket/badge.svg?branch=master)](https://coveralls.io/github/langwolf/lion-socket?branch=master)
+[![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 lion-socket provides a rpc solution for using thrift. 
 
