@@ -12,7 +12,7 @@ public class PerformenceTest implements JavaSamplerClient {
 //	private SampleResult results;
 	public static Logger logger = LoggerFactory
 			.getLogger(PerformenceTest.class);
-	UserFeatureClientService test = new UserFeatureClientService();
+//	UserFeatureClientService test = new UserFeatureClientService();
 
 	// 设置传入的参数，可以设置多个，已设置的参数会显示到Jmeter的参数列表中
 	public Arguments getDefaultParameters() {
@@ -39,7 +39,7 @@ public class PerformenceTest implements JavaSamplerClient {
 			// 通过java请求调用服务
 
 //			 long time_start_1 = System.currentTimeMillis();
-			resString = test.getUserFeature(key, 0);
+//			resString = test.getUserFeature(key, 0);
 //			 long time_end_1 = System.currentTimeMillis();
 //			 System.out.println("runTest调用getUserFeature的运行时间："+(time_end_1-time_start_1)+"ms");
 
